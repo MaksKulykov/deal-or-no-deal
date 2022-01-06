@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+export const unit = 8;
+
 const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
@@ -15,11 +17,6 @@ const GlobalStyle = createGlobalStyle`
         padding: 0,
         fontFamily: Source Sans Pro, sans-serif,
         backgroundColor: #fff,
-    },
-    '#root' {
-        display: flex,
-        flexDirection: column,
-        minHeight: 100%,
     }
 `;
 

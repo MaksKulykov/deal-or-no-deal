@@ -1,19 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Header = styled.div`
-    width: 100%;
-    height: 100px;
-    color: red;
-`;
+import Layout from '../components/layout';
 
 const Game = () => {
     return (
-        <>
-            <Header>
-                <p>game</p>
-            </Header>
-        </>
+        <Layout grid>
+            <p>111</p>
+            <p>222</p>
+            <p>333</p>
+            <p>444</p>
+        </Layout>
     )
 };
 
