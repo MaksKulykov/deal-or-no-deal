@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
         height: 100%;
         margin: 0;
         padding: 0;
-        fontFamily: Source Sans Pro, sans-serif;
+        font-family: Source Sans Pro, sans-serif;
     }
     #root {
         display: flex;
