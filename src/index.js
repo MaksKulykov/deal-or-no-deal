@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './globalStyles';
+import Pages from "./pages";
 
 ReactDOM.render(
-    <App />,
+    <>
+        <GlobalStyles />
+        <Pages />
+    </>,
     document.getElementById('root')
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { unit } from '../globalStyles';
+import { unit, widths } from '../globalStyles';
 
 /**
  * Layout renders the full page content:
@@ -26,6 +26,8 @@ const PageContainer = styled.div`
     flex-wrap: wrap;
     align-self: center;
     flex-grow: 1;
-    padding: ${props => props.fullWidth ? 0 : unit * 2};
-    padding-bottom: ${unit * 5};
+    max-width: ${props => props.fullWidth ? null : widths.regularPageWidth}px;
+    width: 100%;
+    padding: ${props => props.fullWidth ? 0 : unit * 2}px;
+    padding-bottom: ${unit * 5}px;
 `;

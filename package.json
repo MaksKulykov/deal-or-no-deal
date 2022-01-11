@@ -13,6 +13,11 @@
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"
   },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "babel-plugin-styled-components": "^2.0.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -23,6 +28,21 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "babel-plugin-styled-components",
+        {
+          "ssr": false,
+          "displayName": false,
+          "namespace": "sc"
+        }
+      ]
     ]
   },
   "browserslist": {
