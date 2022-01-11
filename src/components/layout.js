@@ -30,4 +30,7 @@ const PageContainer = styled.div`
     width: 100%;
     padding: ${props => props.fullWidth ? 0 : unit * 2}px;
     padding-bottom: ${unit * 5}px;
+   background-size: cover;
+    background-color: lightgreen;
+    background-position: center;
 `;

@@ -15,7 +15,7 @@ export class Game extends Component {
     renderBox = () => {
         let schaffledNumbers = [...NUMBERS];
         this.shuffleArray(schaffledNumbers);
-        return schaffledNumbers.map(number => <Box key={number} number={number} />);
+        return schaffledNumbers.map((value, index) => <Box key={value} value={value} counter={++index} />);
     };
 
     render() {
