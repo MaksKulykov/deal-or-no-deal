@@ -25,7 +25,8 @@ const BoxContainer = styled.div`
     display: flex;
     justify-content: center;
     width: 15%;
-    height: 20px;
+    height: 100%;
+    padding: 5px;
     margin: 5px;
     &:hover {
         background-color: red;
