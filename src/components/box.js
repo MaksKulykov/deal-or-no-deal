@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Box = ({number}) => {
+    const [visible, setVisible] = useState(true);
+    const handleClick = () => {
+        setVisible(!visible);
+    };
+
     return (
-        <BoxContainer>
+        <BoxContainer onClick={handleClick} style={{ visibility: visible ? 'visible' : 'hidden'}}>
             {number}
         </BoxContainer>
     );

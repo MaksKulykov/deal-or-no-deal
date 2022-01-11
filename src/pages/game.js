@@ -6,7 +6,7 @@ import { NUMBERS } from '../constants/constants';
 export class Game extends Component {
 
     renderBox = () => {
-        return NUMBERS.map(number => <Box number={number} />);
+        return NUMBERS.map(number => <Box key={number} number={number} />);
     };
 
     render() {
