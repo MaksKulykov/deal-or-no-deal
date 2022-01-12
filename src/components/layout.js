@@ -21,16 +21,17 @@ export default Layout;
 /** Layout styled components */
 const PageContainer = styled.div`
     display: flex;
-    justify-content: ${props => props.grid ? 'center' : 'top'};
+    justify-content: ${props => props.grid ? 'center' : 'start'};
     flex-direction: ${props => props.grid ? 'row' : 'column'};
     flex-wrap: wrap;
     align-self: center;
     flex-grow: 1;
     max-width: ${props => props.fullWidth ? null : widths.regularPageWidth}px;
     width: 100%;
+    height: 100vh;
     padding: ${props => props.fullWidth ? 0 : unit * 2}px;
     padding-bottom: ${unit * 5}px;
-   background-size: cover;
+    background-size: cover;
     background-color: lightgreen;
-    background-position: center;
+    background-position: center;  
 `;

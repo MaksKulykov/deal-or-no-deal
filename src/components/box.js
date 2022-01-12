@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Box = ({counter, value}) => {
+const Box = ({counter, value, onClick}) => {
     const [visible, setVisible] = useState(true);
-    const handleClick = () => {
+    const handleClickChild = () => {
         setVisible(!visible);
+        onClick(counter, value);
     };
-    console.log(counter);
 
     return (
-        <BoxContainer onClick={handleClick} style={{ visibility: visible ? 'visible' : 'hidden'}}>
+        <BoxContainer onClick={handleClickChild} style={{ visibility: visible ? 'visible' : 'hidden'}}>
             <BoxBody>
                 <BoxValue>
                     {value}
