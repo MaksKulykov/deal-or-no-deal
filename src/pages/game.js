@@ -1,8 +1,10 @@
-import React, {Component, useState} from 'react';
+import React, { Component } from 'react';
 import Layout from '../components/layout';
 import Box from '../components/box';
+import LeftSideBar from '../components/leftSideBar';
+import RightSideBar from '../components/rightSideBar';
 import { NUMBERS } from '../constants/constants';
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export class Game extends Component {
 
@@ -44,12 +46,20 @@ export class Game extends Component {
 
     render() {
         return (
-            <Layout grid>
-                {this.renderBox()}
-                <Footer>
-                    {this.renderMainBox()}
-                </Footer>
-            </Layout>
+            <>
+                <LeftSideBar>
+
+                </LeftSideBar>
+                <Layout grid>
+                    {this.renderBox()}
+                    <Footer>
+                        {this.renderMainBox()}
+                    </Footer>
+                </Layout>
+                <RightSideBar>
+
+                </RightSideBar>
+            </>
         )
     }
 }
