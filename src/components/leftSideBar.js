@@ -20,7 +20,7 @@ const PageContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     flex-wrap: nowrap;
-    align-self: center;
+    align-items: center;
     flex-grow: 1;
     width: auto;
     height: 100vh;

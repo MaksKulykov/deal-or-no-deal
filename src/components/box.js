@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Box = ({counter, value, onClick}) => {
+const Box = ({counter, disabled, value, onClick}) => {
     const [visible, setVisible] = useState(true);
     const handleClickChild = () => {
-        setVisible(!visible);
-        onClick(counter, value);
+        if (!disabled) {
+            setVisible(!visible);
+            onClick(counter, value);
+        }
     };
 
     return (
@@ -28,7 +30,6 @@ export default Box;
 /** Box styled components */
 const BoxContainer = styled.div`
     position: relative;
-    border-radius: 6;
     display: flex;
     justify-content: center;
     width: 15%;
@@ -56,7 +57,7 @@ const BoxBody = styled.div`
         left: 50%;
         -webkit-transform: translateX(-50%);
                 transform: translateX(-50%);
-        width: 50px;
+        width: 60px;
         background: linear-gradient(#ffffff,#ffefa0)
     }
     &:hover {
@@ -99,7 +100,7 @@ const BoxLid = styled.div`
         left: 50%;
         -webkit-transform: translateX(-50%);
                 transform: translateX(-50%);
-        width: 50px;
+        width: 60px;
         background: linear-gradient(#ffefa0,#fff)
     }
     &:hover {
@@ -114,4 +115,5 @@ const BoxNumber = styled.div`
     width: 100%;
     text-align: center;
     font-size: 50px;
+    font-weight: bold;
 `;

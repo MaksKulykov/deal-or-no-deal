@@ -3,61 +3,72 @@ import Layout from '../components/layout';
 import Box from '../components/box';
 import LeftSideBar from '../components/leftSideBar';
 import RightSideBar from '../components/rightSideBar';
+import MoneyBox from '../components/moneyBox';
 import { NUMBERS } from '../constants/constants';
 import styled from 'styled-components';
 
 export class Game extends Component {
 
     state = {
-        isRender: false,
-        counter: null,
-        value: null
+        firstBoxCounter: null,
+        firstBoxValue: null,
+        selectedValues: []
     };
-
-    componentDidMount() {
-        this.setState({isRender: true})
-    }
 
     handleClick = (counter, value) => {
-        if (!this.state.counter) {
-            this.setState({counter: counter, value: value});
+        if (!this.state.firstBoxCounter) {
+            this.setState({firstBoxCounter: counter, firstBoxValue: value});
+        } else {
+            this.setState({selectedValues: [...this.state.selectedValues, value]});
         }
     };
 
-    shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    };
-
-    renderBox = () => {
-        let schaffledNumbers = [...NUMBERS];
-        if (!this.state.isRender) {
-            this.shuffleArray(schaffledNumbers);
-        }
-        return schaffledNumbers.map((value, index) => <Box key={value} onClick={this.handleClick} value={value} counter={++index} />);
+    renderBoxes = (numbers) => {
+        return numbers.map((value, index) => <Box key={value}
+                                                  onClick={this.handleClick}
+                                                  value={value}
+                                                  counter={++index}
+                                                  disabled={false} />);
     };
 
     renderMainBox = () => {
-        return this.state.counter ?
-            <Box key={'200001'} value={this.state.value} counter={this.state.counter} /> : null;
+        return this.state.firstBoxCounter ?
+            <Box key={'200001'}
+                 value={this.state.firstBoxValue}
+                 counter={this.state.firstBoxCounter}
+                 disabled={true}/> : null;
+    };
+
+    renderLeftMoneyList = () => {
+        let leftNumbers = [...NUMBERS].slice(0, 12);
+        return leftNumbers.map(value => <MoneyBox key={value}
+                                                            value={value}
+                                                            visibility={this.state.selectedValues.indexOf(value) >= 0 ? 'hidden' : 'visible'} />);
+    };
+
+    renderRightMoneyList = () => {
+        let rightNumbers = [...NUMBERS].slice(12);
+        return rightNumbers.map(value => <MoneyBox key={value}
+                                                            value={value}
+                                                            visibility={this.state.selectedValues.indexOf(value) >= 0 ? 'hidden' : 'visible'} />);
     };
 
     render() {
+        const { numbers } = this.props;
+
         return (
             <>
                 <LeftSideBar>
-
+                    {this.renderLeftMoneyList()}
                 </LeftSideBar>
                 <Layout grid>
-                    {this.renderBox()}
+                    {this.renderBoxes(numbers)}
                     <Footer>
                         {this.renderMainBox()}
                     </Footer>
                 </Layout>
                 <RightSideBar>
-
+                    {this.renderRightMoneyList()}
                 </RightSideBar>
             </>
         )
