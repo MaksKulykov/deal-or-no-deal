@@ -44,14 +44,16 @@ export class Game extends Component {
         let leftNumbers = [...NUMBERS].slice(0, 12);
         return leftNumbers.map(value => <MoneyBox key={value}
                                                             value={value}
-                                                            visibility={this.state.selectedValues.indexOf(value) >= 0 ? 'hidden' : 'visible'} />);
+                                                            animate={this.state.selectedValues.indexOf(value) >= 0}
+                                                            reverse={true} />);
     };
 
     renderRightMoneyList = () => {
         let rightNumbers = [...NUMBERS].slice(12);
         return rightNumbers.map(value => <MoneyBox key={value}
                                                             value={value}
-                                                            visibility={this.state.selectedValues.indexOf(value) >= 0 ? 'hidden' : 'visible'} />);
+                                                            animate={this.state.selectedValues.indexOf(value) >= 0}
+                                                            reverse={false} />);
     };
 
     render() {
