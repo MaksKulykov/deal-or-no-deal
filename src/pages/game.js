@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Layout from '../components/layout';
 import Box from '../components/box';
 import LeftSideBar from '../components/leftSideBar';
 import RightSideBar from '../components/rightSideBar';
 import MoneyBox from '../components/moneyBox';
 import { NUMBERS } from '../constants/constants';
-import styled from 'styled-components';
 
 export class Game extends Component {
 
@@ -23,7 +23,8 @@ export class Game extends Component {
         }
     };
 
-    renderBoxes = (numbers) => {
+    renderBoxes = () => {
+        const { numbers } = this.props;
         return numbers.map((value, index) => <Box key={value}
                                                   onClick={this.handleClick}
                                                   value={value}
@@ -54,15 +55,13 @@ export class Game extends Component {
     };
 
     render() {
-        const { numbers } = this.props;
-
         return (
             <>
                 <LeftSideBar>
                     {this.renderLeftMoneyList()}
                 </LeftSideBar>
                 <Layout grid>
-                    {this.renderBoxes(numbers)}
+                    {this.renderBoxes()}
                     <Footer>
                         {this.renderMainBox()}
                     </Footer>

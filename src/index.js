@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './globalStyles';
-import Pages from "./pages";
+import Pages from './pages';
 
 ReactDOM.render(
     <>
