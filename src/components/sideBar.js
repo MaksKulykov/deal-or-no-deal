@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { unit } from '../globalStyles';
 
-const LeftSideBar = ({ children }) => {
+const SideBar = ({ children }) => {
     return (
         <>
             <PageContainer>
@@ -12,9 +12,9 @@ const LeftSideBar = ({ children }) => {
     );
 };
 
-export default LeftSideBar;
+export default SideBar;
 
-/** LeftSideBar styled components */
+/** SideBar styled components */
 const PageContainer = styled.div`
     display: flex;
     justify-content: center;

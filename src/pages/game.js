@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import Box from '../components/box';
-import LeftSideBar from '../components/leftSideBar';
-import RightSideBar from '../components/rightSideBar';
+import SideBar from '../components/sideBar';
 import MoneyBox from '../components/moneyBox';
 import { NUMBERS } from '../constants/constants';
 
@@ -59,18 +58,18 @@ export class Game extends Component {
     render() {
         return (
             <>
-                <LeftSideBar>
+                <SideBar>
                     {this.renderLeftMoneyList()}
-                </LeftSideBar>
+                </SideBar>
                 <Layout grid>
                     {this.renderBoxes()}
                     <Footer>
                         {this.renderMainBox()}
                     </Footer>
                 </Layout>
-                <RightSideBar>
+                <SideBar>
                     {this.renderRightMoneyList()}
-                </RightSideBar>
+                </SideBar>
             </>
         )
     }
