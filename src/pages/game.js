@@ -9,14 +9,14 @@ import { NUMBERS } from '../constants/constants';
 export class Game extends Component {
 
     state = {
-        firstBoxCounter: null,
+        firstBoxNumber: null,
         firstBoxValue: null,
         selectedValues: []
     };
 
-    handleClick = (counter, value) => {
-        if (!this.state.firstBoxCounter) {
-            this.setState({firstBoxCounter: counter, firstBoxValue: value});
+    handleClick = (boxNumber, value) => {
+        if (!this.state.firstBoxNumber) {
+            this.setState({firstBoxNumber: boxNumber, firstBoxValue: value});
         } else {
             this.setState({selectedValues: [...this.state.selectedValues, value]});
         }
@@ -27,15 +27,15 @@ export class Game extends Component {
         return numbers.map((value, index) => <Box key={value}
                                                   onClick={this.handleClick}
                                                   value={value}
-                                                  counter={++index}
+                                                  boxNumber={++index}
                                                   disabled={false} />);
     };
 
     renderMainBox = () => {
-        return this.state.firstBoxCounter ?
+        return this.state.firstBoxNumber ?
             <Box key={'200001'}
                  value={this.state.firstBoxValue}
-                 counter={this.state.firstBoxCounter}
+                 boxNumber={this.state.firstBoxNumber}
                  disabled={true}/> : null;
     };
 

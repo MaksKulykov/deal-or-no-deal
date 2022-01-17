@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Box = ({counter, disabled, value, onClick}) => {
+const Box = ({boxNumber, disabled, value, onClick}) => {
     const [visible, setVisible] = useState(true);
     const handleClickChild = () => {
         if (!disabled) {
             setVisible(!visible);
-            onClick(counter, value);
+            onClick(boxNumber, value);
         }
     };
 
@@ -18,7 +18,7 @@ const Box = ({counter, disabled, value, onClick}) => {
                 </BoxValue>
                 <BoxLid />
                 <BoxNumber>
-                    {counter}
+                    {boxNumber}
                 </BoxNumber>
             </BoxBody>
         </BoxContainer>
