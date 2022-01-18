@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import img from './static/images/background.jpeg';
 
 const breakpoints = [480, 768, 992, 1200];
 export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
@@ -29,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
         justify-content: center;
         flex-direction: row;
         align-self: center;
+        background-image: url(${img});
     }
     * {
         margin: 0;

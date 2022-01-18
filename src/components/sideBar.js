@@ -26,7 +26,4 @@ const PageContainer = styled.div`
     height: 100vh;
     padding: ${unit * 2}px;
     padding-bottom: ${unit * 5}px;
-    background-size: cover;
-    background-color: lemonchiffon;
-    background-position: center;  
 `;

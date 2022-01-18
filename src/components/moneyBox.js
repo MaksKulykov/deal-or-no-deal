@@ -20,7 +20,7 @@ const MoneyBoxContainer = styled.div`
     height: auto;
     padding: 5px;
     margin: 5px;
-    background-color: ${props => (props.animate ? "#ff0303" : "lightgreen")};
+    background: ${props => (props.animate ? "linear-gradient(#762c2c,#ff0303)" : "linear-gradient(#ffd700,#b8860b)")};
     text-align: center;
     font-weight: bold;
     font-size: 25px;

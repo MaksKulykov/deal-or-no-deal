@@ -6,6 +6,7 @@ import Box from '../components/box';
 import SideBar from '../components/sideBar';
 import MoneyBox from '../components/moneyBox';
 import { COEFFICIENTS, NUMBERS, STEPS_AMOUNT } from '../constants/constants';
+import { unit, widths } from '../globalStyles';
 
 Modal.setAppElement(document.getElementById('root'));
 
@@ -99,12 +100,14 @@ export class Game extends Component {
                     isOpen={this.state.showModal}
                     style={modalStyles}
                 >
-                    <p>BANKER'S OFFER</p>
-                    <p>
-                        {this.calcBankSum()}
-                    </p>
-                    <button onClick={this.handleCloseModal}>DEAL</button>
-                    <button onClick={this.handleCloseModal}>NO DEAL</button>
+                    <ModalHeader>BANK'S OFFER</ModalHeader>
+                    <ModalBody>
+                        {String.fromCharCode(8364) + ' ' + this.calcBankSum()}
+                    </ModalBody>
+                    <ModalFooter>
+                        <ModalButton onClick={this.handleCloseModal}>DEAL</ModalButton>
+                        <ModalButton onClick={this.handleCloseModal}>NO DEAL</ModalButton>
+                    </ModalFooter>
                 </Modal>
             </>
         )
@@ -117,9 +120,6 @@ const Footer = styled.div`
     align-self: center;
     width: 100%;
     height: 20vh;
-    background-size: cover;
-    background-color: lightgreen;
-    background-position: center;
 `;
 
 const modalStyles = {
@@ -130,10 +130,52 @@ const modalStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        zIndex: '10'
-    },
+        zIndex: '10',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        maxWidth: `${widths.regularPageWidth/2}px`,
+        width: '100%',
+        maxHeight: `${widths.regularPageWidth/3}px`,
+        height: '100%',
+        padding: `${unit*2}px`,
+        paddingBottom: `${unit * 3}px`,
+        background: 'linear-gradient(#ffd700,#b8860b)'
+},
     overlay: {
-        backgroundColor: 'transparent',
-        zIndex: '5'
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        zIndex: '5',
     },
 };
+
+const ModalHeader = styled.div`
+    text-align: center;
+    font-size: 50px;
+`;
+
+const ModalBody = styled.div`
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+`;
+
+const ModalFooter = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: no-wrap;
+    justify-content: space-between;
+`;
+
+const ModalButton = styled.button`
+    width: 40%;
+    border: none;
+    border-radius: 4px;
+    padding: 15px 32px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffd700;
+    background-image: linear-gradient(#696969,#000000);
+    &:hover {
+        background-image: linear-gradient(#000000, #696969);
+    }
+`;
