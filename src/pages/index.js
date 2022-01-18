@@ -15,7 +15,7 @@ let numbers = (function() {
 export default function Pages() {
     return (
         <Router primary={false} component={Fragment}>
-            <Game path="/" numbers={numbers}/>
+            <Game path="/" numbers={numbers} />
         </Router>
     );
 }
