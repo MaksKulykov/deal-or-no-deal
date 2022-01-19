@@ -28,7 +28,7 @@ export class Game extends Component {
         } else {
             this.setState({selectedValues: [...this.state.selectedValues, value]}, () => {
                 if (STEPS_AMOUNT.includes(this.state.selectedValues.length)) {
-                    setTimeout(() => this.setState({showModal: true}), 1000);
+                    setTimeout(() => this.setState({showModal: true}), 500);
                 }
             });
         }
@@ -40,7 +40,7 @@ export class Game extends Component {
                                                   onClick={this.handleClick}
                                                   value={value}
                                                   boxNumber={++index}
-                                                  disabled={false} />);
+                                                  disabled={this.state.showModal} />);
     };
 
     renderMainBox = () => {

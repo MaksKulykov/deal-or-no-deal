@@ -11,7 +11,7 @@ const Box = ({boxNumber, disabled, value, onClick}) => {
     };
 
     return (
-        <BoxContainer style={{ visibility: visible ? 'visible' : 'hidden'}}>
+        <BoxContainer disabled={disabled} style={{ visibility: visible ? 'visible' : 'hidden'}}>
             <BoxBody onClick={handleClickChild}>
                 <BoxValue>
                     {value}
