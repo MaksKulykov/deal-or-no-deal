@@ -8,6 +8,8 @@ import MoneyBox from '../components/moneyBox';
 import { COEFFICIENTS, NUMBERS, STEPS_AMOUNT } from '../constants/constants';
 import { unit, widths } from '../globalStyles';
 
+import './game.css';
+
 Modal.setAppElement(document.getElementById('root'));
 
 export class Game extends Component {
@@ -26,7 +28,7 @@ export class Game extends Component {
         } else {
             this.setState({selectedValues: [...this.state.selectedValues, value]}, () => {
                 if (STEPS_AMOUNT.includes(this.state.selectedValues.length)) {
-                    this.setState({showModal: true});
+                    setTimeout(() => this.setState({showModal: true}), 1000);
                 }
             });
         }
@@ -140,11 +142,13 @@ const modalStyles = {
         height: '100%',
         padding: `${unit*2}px`,
         paddingBottom: `${unit * 3}px`,
-        background: 'linear-gradient(#ffd700,#b8860b)'
-},
+        background: 'linear-gradient(#ffd700,#b8860b)',
+        border: 'none',
+        borderRadius: `${unit}px`
+    },
     overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        zIndex: '5',
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        zIndex: '5'
     },
 };
 

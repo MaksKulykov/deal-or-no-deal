@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { unit } from '../globalStyles';
 
 const MoneyBox = ({animate, reverse, value}) => {
 
@@ -19,7 +20,7 @@ const MoneyBoxContainer = styled.div`
     width: 80%;
     height: auto;
     padding: 5px;
-    margin: 5px;
+    margin: ${unit}px;
     background: ${props => (props.animate ? "linear-gradient(#762c2c,#ff0303)" : "linear-gradient(#ffd700,#b8860b)")};
     text-align: center;
     font-weight: bold;

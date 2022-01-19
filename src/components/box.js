@@ -11,8 +11,8 @@ const Box = ({boxNumber, disabled, value, onClick}) => {
     };
 
     return (
-        <BoxContainer onClick={handleClickChild} style={{ visibility: visible ? 'visible' : 'hidden'}}>
-            <BoxBody>
+        <BoxContainer style={{ visibility: visible ? 'visible' : 'hidden'}}>
+            <BoxBody onClick={handleClickChild}>
                 <BoxValue>
                     {value}
                 </BoxValue>
@@ -36,7 +36,6 @@ const BoxContainer = styled.div`
     height: auto;
     padding: 5px;
     margin: 5px;
-    cursor: pointer;
 `;
 
 const BoxBody = styled.div`
@@ -49,6 +48,7 @@ const BoxBody = styled.div`
     border-bottom-right-radius: 5%;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
     background: linear-gradient(#762c2c,#ff0303);
+    cursor: pointer;
     &::after {
         content: "";
         position: absolute;
