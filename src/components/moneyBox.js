@@ -14,7 +14,7 @@ const MoneyBox = ({animate, reverse, value}) => {
 
 export default MoneyBox;
 
-/** Box styled components */
+/** MoneyBox styled components */
 const MoneyBoxContainer = styled.div`
     border-radius: 6px;
     width: 80%;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
 import Layout from '../components/layout';
+import Footer from '../components/footer';
 import Box from '../components/box';
 import SideBar from '../components/sideBar';
 import MoneyBox from '../components/moneyBox';
@@ -28,7 +29,7 @@ export class Game extends Component {
         } else {
             this.setState({selectedValues: [...this.state.selectedValues, value]}, () => {
                 if (STEPS_AMOUNT.includes(this.state.selectedValues.length)) {
-                    setTimeout(() => this.setState({showModal: true}), 500);
+                    this.setState({showModal: true});
                 }
             });
         }
@@ -78,6 +79,59 @@ export class Game extends Component {
         return Math.round(sum / (NUMBERS.length - this.state.selectedValues.length) / COEFFICIENTS[this.state.counter]);
     };
 
+    calcBoxCounter = (arr) => {
+        console.log(arr);
+        let x = arr.length;
+        switch(x) {
+            case 0:
+                return 6;
+            case 1:
+                return 5;
+            case 2:
+                return 4;
+            case 3:
+                return 3;
+            case 4:
+                return 2;
+            case 5:
+                return 1;
+            case 6:
+                return 4;
+            case 7:
+                return 3;
+            case 8:
+                return 2;
+            case 9:
+                return 1;
+            case 10:
+                return 3;
+            case 11:
+                return 2;
+            case 12:
+                return 1;
+            case 13:
+                return 3;
+            case 14:
+                return 2;
+            case 15:
+                return 1;
+            case 16:
+                return 3;
+            case 17:
+                return 2;
+            case 18:
+                return 1;
+            case 19:
+                return 2;
+            case 20:
+                return 1;
+            case 21:
+                return 1;
+            default:
+                return 0
+        }
+    };
+
     handleCloseModal = () => {
         this.setState({counter: this.state.counter + 1});
         this.setState({showModal: false});
@@ -91,7 +145,8 @@ export class Game extends Component {
                 </SideBar>
                 <Layout grid>
                     {this.renderBoxes()}
-                    <Footer>
+                    <Footer disabled={this.state.showModal}
+                            boxCounter={this.state.firstBoxNumber ? this.calcBoxCounter(this.state.selectedValues) : 1}>
                         {this.renderMainBox()}
                     </Footer>
                 </Layout>
@@ -101,6 +156,7 @@ export class Game extends Component {
                 <Modal
                     isOpen={this.state.showModal}
                     style={modalStyles}
+                    closeTimeoutMS={500}
                 >
                     <ModalHeader>BANK'S OFFER</ModalHeader>
                     <ModalBody>
@@ -115,14 +171,6 @@ export class Game extends Component {
         )
     }
 }
-
-const Footer = styled.div`
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    width: 100%;
-    height: 20vh;
-`;
 
 const modalStyles = {
     content: {
