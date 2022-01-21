@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Box = ({boxNumber, disabled, value, onClick}) => {
     const [visible, setVisible] = useState(true);
+    const [animate, setAnimate] = useState(false);
     const handleClickChild = () => {
         if (!disabled) {
-            setVisible(!visible);
+            setTimeout(() => setVisible(!visible), 1000);
+            setAnimate(!animate);
             onClick(boxNumber, value);
         }
     };
 
     return (
-        <BoxContainer disabled={disabled} style={{ visibility: visible ? 'visible' : 'hidden'}}>
-            <BoxBody onClick={handleClickChild}>
-                <BoxValue>
-                    {value}
-                </BoxValue>
-                <BoxLid />
-                <BoxNumber>
-                    {boxNumber}
-                </BoxNumber>
-            </BoxBody>
+        <BoxContainer disabled={disabled} style={{visibility: visible ? 'visible' : 'hidden'}}>
+            <BoxContent animate={animate}>
+                <BoxBody onClick={handleClickChild}>
+                    <BoxValue>
+                        {value}
+                    </BoxValue>
+                    <BoxLid />
+                    <BoxNumber>
+                        {boxNumber}
+                    </BoxNumber>
+                </BoxBody>
+            </BoxContent>
         </BoxContainer>
     );
 };
@@ -36,6 +40,24 @@ const BoxContainer = styled.div`
     height: auto;
     padding: 5px;
     margin: 5px;
+`;
+
+const BoxContent = styled.div`
+    width: 100%;
+    height: 100%;
+    animation: ${props => (props.animate ? anim : '')} 1s ease-out;
+    &:hover {
+        transform: scale(1.1);
+    }
+`;
+
+const anim = keyframes`
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(0, 0);
+    }
 `;
 
 const BoxBody = styled.div`
@@ -60,11 +82,6 @@ const BoxBody = styled.div`
         width: 60px;
         background: linear-gradient(#ffffff,#ffefa0)
     }
-    &:hover {
-        cursor: pointer;
-        -webkit-animation: box-body 1s forwards ease-in-out;
-                animation: box-body 1s forwards ease-in-out;
-}
 `;
 
 const BoxValue = styled.div`
@@ -73,11 +90,6 @@ const BoxValue = styled.div`
     transition: all 0.5s;
     margin: 0 auto;
     display: block;
-    &:hover {
-        opacity: 1;
-        z-index: 0;
-        transform: translateY(-157px);
-    }
 `;
 
 const BoxLid = styled.div`
@@ -102,10 +114,6 @@ const BoxLid = styled.div`
                 transform: translateX(-50%);
         width: 60px;
         background: linear-gradient(#ffefa0,#fff)
-    }
-    &:hover {
-        -webkit-animation: box-lid 1s forwards ease-in-out;
-                animation: box-lid 1s forwards ease-in-out;
     }
 `;
 
