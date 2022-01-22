@@ -80,7 +80,6 @@ export class Game extends Component {
     };
 
     calcBoxCounter = (arr) => {
-        console.log(arr);
         let x = arr.length;
         switch(x) {
             case 0:
