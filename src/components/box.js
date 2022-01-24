@@ -96,6 +96,8 @@ const BoxBody = styled.div`
     height: 100px;
     width: 100px;
     margin-top: 53.3333333333px;
+    margin-left: auto; 
+    margin-right: auto;
     background-color: #cc231e;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
