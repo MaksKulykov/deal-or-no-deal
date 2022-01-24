@@ -5,7 +5,7 @@ import { unit, widths } from '../../globalStyles';
 
 import './bankOfferModal.css';
 
-const BankOfferModal = ({ calcBankSum, isOpen, handleCloseModal }) => {
+const BankOfferModal = ({ calcBankSum, isOpen, handleEndGame, handleCloseModal }) => {
     return (
         <Modal
             isOpen={isOpen}
@@ -14,10 +14,11 @@ const BankOfferModal = ({ calcBankSum, isOpen, handleCloseModal }) => {
         >
             <ModalHeader>BANK'S OFFER</ModalHeader>
             <ModalBody>
-                {String.fromCharCode(8364) + ' ' + calcBankSum}
+                {String.fromCharCode(8364) + ' ' + calcBankSum
+                    .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
             </ModalBody>
             <ModalFooter>
-                <ModalButton onClick={handleCloseModal}>DEAL</ModalButton>
+                <ModalButton onClick={handleEndGame}>DEAL</ModalButton>
                 <ModalButton onClick={handleCloseModal}>NO DEAL</ModalButton>
             </ModalFooter>
         </Modal>

@@ -6,7 +6,8 @@ const MoneyBox = ({animate, reverse, value}) => {
 
     return (
         <MoneyBoxContainer animate={animate} reverse={reverse}>
-            {String.fromCharCode(8364) + ' ' + value}
+            {String.fromCharCode(8364) + ' ' + value.toString()
+                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
         </MoneyBoxContainer>
     );
 

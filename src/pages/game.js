@@ -17,7 +17,8 @@ export class Game extends Component {
         firstBoxValue: null,
         selectedValues: [],
         showModal: false,
-        counter: 0
+        counter: 0,
+        isGameFinish: false
     };
 
     handleClick = (boxNumber, value) => {
@@ -38,7 +39,8 @@ export class Game extends Component {
                                                   onClick={this.handleClick}
                                                   value={value}
                                                   boxNumber={++index}
-                                                  disabled={this.state.showModal} />);
+                                                  isGameFinish={false}
+                                                  disabled={this.state.showModal || this.state.isGameFinish} />);
     };
 
     renderMainBox = () => {
@@ -46,6 +48,7 @@ export class Game extends Component {
             <Box key={'200001'}
                  value={this.state.firstBoxValue}
                  boxNumber={this.state.firstBoxNumber}
+                 isGameFinish={this.state.isGameFinish}
                  disabled={true}/> : null;
     };
 
@@ -129,8 +132,13 @@ export class Game extends Component {
     };
 
     handleCloseModal = () => {
-        this.setState({counter: this.state.counter + 1});
         this.setState({showModal: false});
+        this.setState({counter: this.state.counter + 1});
+    };
+
+    handleEndGame = () => {
+        this.setState({showModal: false});
+        setTimeout(() => this.setState({isGameFinish: true}), 500);
     };
 
     render() {
@@ -151,7 +159,8 @@ export class Game extends Component {
                 </SideBar>
                 <BankOfferModal isOpen={this.state.showModal}
                                 calcBankSum={this.calcBankSum()}
-                                handleCloseModal={this.handleCloseModal}/>
+                                handleCloseModal={this.handleCloseModal}
+                                handleEndGame={this.handleEndGame} />
             </>
         )
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-const Box = ({boxNumber, disabled, value, onClick}) => {
+const Box = ({boxNumber, disabled, isGameFinish, value, onClick}) => {
     const [visible, setVisible] = useState(true);
     const [animate, setAnimate] = useState(false);
     const handleClickChild = () => {
@@ -14,13 +14,14 @@ const Box = ({boxNumber, disabled, value, onClick}) => {
 
     return (
         <BoxContainer disabled={disabled} style={{visibility: visible ? 'visible' : 'hidden'}}>
-            <BoxContent animate={animate}>
-                <BoxBody onClick={handleClickChild}>
-                    <BoxValue>
-                        {value}
+            <BoxContent animate={animate} disabled={disabled}>
+                <BoxBody onClick={handleClickChild} disabled={disabled} isGameFinish={isGameFinish}>
+                    <BoxValue isGameFinish={isGameFinish}>
+                        {String.fromCharCode(8364) + ' ' + value.toString()
+                            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
                     </BoxValue>
-                    <BoxLid />
-                    <BoxNumber>
+                    <BoxLid isGameFinish={isGameFinish} />
+                    <BoxNumber isGameFinish={isGameFinish}>
                         {boxNumber}
                     </BoxNumber>
                 </BoxBody>
@@ -45,18 +46,48 @@ const BoxContainer = styled.div`
 const BoxContent = styled.div`
     width: 100%;
     height: 100%;
-    animation: ${props => (props.animate ? anim : '')} 1s ease-out;
-    &:hover {
-        transform: scale(1.1);
-    }
+    animation: ${props => (props.animate ? hideBox : '')} 1s ease-out;
+    ${props => !props.disabled && css`
+        &:hover {
+            transform: scale(1.1);
+        }
+   `}
 `;
 
-const anim = keyframes`
+const hideBox = keyframes`
     0% {
         transform: scale(1, 1);
     }
     100% {
         transform: scale(0, 0);
+    }
+`;
+
+const boxBodyAnim = keyframes`
+    0% {
+        transform: translate3d(0%, 0%, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate3d(0%, 25%, 0) rotate(20deg);
+    }
+    50% {
+        transform: translate3d(0%, -15%, 0) rotate(0deg);
+    }
+    70% {
+        transform: translate3d(0%, 0%, 0) rotate(0deg);
+    }
+`;
+
+const boxLidAnim = keyframes`
+    0%,
+    42% {
+        transform: translate3d(-50%, 0%, 0) rotate(0deg);
+    }
+    60% {
+        transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+    }
+    90%, 100% {
+        transform: translate3d(-119%, 225%, 0) rotate(-70deg);
     }
 `;
 
@@ -70,7 +101,9 @@ const BoxBody = styled.div`
     border-bottom-right-radius: 5%;
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
     background: linear-gradient(#762c2c,#ff0303);
-    cursor: pointer;
+    cursor: ${props => props.disabled ? 'default' : 'pointer'};
+    animation: ${props => (props.isGameFinish ? boxBodyAnim : '')} 1s forwards ease-in-out;
+    z-index: 1;
     &::after {
         content: "";
         position: absolute;
@@ -85,11 +118,16 @@ const BoxBody = styled.div`
 `;
 
 const BoxValue = styled.div`
-    opacity: 0;
-    transform: translateY(0%);
+    opacity: ${props => (props.isGameFinish ? '1' : '0')};
+    transform: ${props => (props.isGameFinish ? 'translateY(-57px)' : 'translateY(0%)')};
     transition: all 0.5s;
     margin: 0 auto;
     display: block;
+    background: linear-gradient(#ffd700,#b8860b);
+    text-align: center;
+    height: ${props => (props.isGameFinish ? '50px' : '')};;
+    line-height: ${props => (props.isGameFinish ? '50px' : '')};;
+    font-weight: bold;
 `;
 
 const BoxLid = styled.div`
@@ -104,6 +142,7 @@ const BoxLid = styled.div`
     width: 110px;
     border-radius: 5%;
     box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
+    animation: ${props => (props.isGameFinish ? boxLidAnim : '')} 1s forwards ease-in-out;
     &::after {
         content: "";
         position: absolute;
@@ -124,4 +163,5 @@ const BoxNumber = styled.div`
     text-align: center;
     font-size: 50px;
     font-weight: bold;
+    transform: ${props => (props.isGameFinish ? 'translateY(-57%)' : 'translateY(0%)')};
 `;
