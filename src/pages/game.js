@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import Modal from 'react-modal';
 import Layout from '../components/layout';
 import Footer from '../components/footer';
 import Box from '../components/box';
 import SideBar from '../components/sideBar';
 import MoneyBox from '../components/moneyBox';
+import BankOfferModal from '../components/bankOfferModal/bankOfferModal';
 import { COEFFICIENTS, NUMBERS, STEPS_AMOUNT } from '../constants/constants';
-import { unit, widths } from '../globalStyles';
-
-import './game.css';
 
 Modal.setAppElement(document.getElementById('root'));
 
@@ -152,81 +149,10 @@ export class Game extends Component {
                 <SideBar>
                     {this.renderRightMoneyList()}
                 </SideBar>
-                <Modal
-                    isOpen={this.state.showModal}
-                    style={modalStyles}
-                    closeTimeoutMS={500}
-                >
-                    <ModalHeader>BANK'S OFFER</ModalHeader>
-                    <ModalBody>
-                        {String.fromCharCode(8364) + ' ' + this.calcBankSum()}
-                    </ModalBody>
-                    <ModalFooter>
-                        <ModalButton onClick={this.handleCloseModal}>DEAL</ModalButton>
-                        <ModalButton onClick={this.handleCloseModal}>NO DEAL</ModalButton>
-                    </ModalFooter>
-                </Modal>
+                <BankOfferModal isOpen={this.state.showModal}
+                                calcBankSum={this.calcBankSum()}
+                                handleCloseModal={this.handleCloseModal}/>
             </>
         )
     }
 }
-
-const modalStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: '10',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        maxWidth: `${widths.regularPageWidth/2}px`,
-        width: '100%',
-        maxHeight: `${widths.regularPageWidth/3}px`,
-        height: '100%',
-        padding: `${unit*2}px`,
-        paddingBottom: `${unit * 3}px`,
-        background: 'linear-gradient(#ffd700,#b8860b)',
-        border: 'none',
-        borderRadius: `${unit}px`
-    },
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        zIndex: '5'
-    },
-};
-
-const ModalHeader = styled.div`
-    text-align: center;
-    font-size: 50px;
-`;
-
-const ModalBody = styled.div`
-    text-align: center;
-    font-weight: bold;
-    font-size: 50px;
-`;
-
-const ModalFooter = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: no-wrap;
-    justify-content: space-between;
-`;
-
-const ModalButton = styled.button`
-    width: 40%;
-    border: none;
-    border-radius: 4px;
-    padding: 15px 32px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #ffd700;
-    background-image: linear-gradient(#696969,#000000);
-    &:hover {
-        background-image: linear-gradient(#000000, #696969);
-    }
-`;
