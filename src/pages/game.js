@@ -134,10 +134,17 @@ export class Game extends Component {
     handleCloseModal = () => {
         this.setState({showModal: false});
         this.setState({counter: this.state.counter + 1});
+        if (this.state.selectedValues.length === 22) {
+            this.setGameFinishFlag();
+        }
     };
 
     handleEndGame = () => {
         this.setState({showModal: false});
+        this.setGameFinishFlag();
+    };
+
+    setGameFinishFlag = () => {
         setTimeout(() => this.setState({isGameFinish: true}), 500);
     };
 
