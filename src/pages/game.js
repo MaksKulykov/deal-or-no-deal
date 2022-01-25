@@ -145,7 +145,7 @@ export class Game extends Component {
     };
 
     setGameFinishFlag = () => {
-        setTimeout(() => this.setState({isGameFinish: true}), 500);
+        this.setState({isGameFinish: true});
     };
 
     render() {
@@ -156,7 +156,7 @@ export class Game extends Component {
                 </SideBar>
                 <Layout grid>
                     {this.renderBoxes()}
-                    <Footer disabled={this.state.showModal}
+                    <Footer disabled={this.state.showModal || this.state.isGameFinish}
                             boxCounter={this.state.firstBoxNumber ? this.calcBoxCounter(this.state.selectedValues) : 1}>
                         {this.renderMainBox()}
                     </Footer>

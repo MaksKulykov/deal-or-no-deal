@@ -91,6 +91,18 @@ const boxLidAnim = keyframes`
     }
 `;
 
+const boxValAnim = keyframes`
+    0% {
+        transform: translateY(0%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(-155%);
+        opacity: 1;
+        z-index: 0;
+    }
+`;
+
 const BoxBody = styled.div`
     position: relative;
     height: 100px;
@@ -104,7 +116,7 @@ const BoxBody = styled.div`
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
     background: linear-gradient(#762c2c,#ff0303);
     cursor: ${props => props.disabled ? 'default' : 'pointer'};
-    animation: ${props => (props.isGameFinish ? boxBodyAnim : '')} 1s forwards ease-in-out;
+    animation: ${props => (props.isGameFinish ? boxBodyAnim : '')} 1s 0.5s forwards ease-in-out;
     z-index: 1;
     &::after {
         content: "";
@@ -120,15 +132,12 @@ const BoxBody = styled.div`
 `;
 
 const BoxValue = styled.div`
-    opacity: ${props => (props.isGameFinish ? '1' : '0')};
-    transform: ${props => (props.isGameFinish ? 'translateY(-57px)' : 'translateY(0%)')};
-    transition: all 0.5s;
+    animation: ${props => (props.isGameFinish ? boxValAnim : '')} 1s 1.5s forwards ease-in-out;
     margin: 0 auto;
     display: block;
+    opacity: 0;
     background: linear-gradient(#ffd700,#b8860b);
     text-align: center;
-    height: ${props => (props.isGameFinish ? '50px' : '')};;
-    line-height: ${props => (props.isGameFinish ? '50px' : '')};;
     font-weight: bold;
 `;
 
@@ -144,7 +153,7 @@ const BoxLid = styled.div`
     width: 110px;
     border-radius: 5%;
     box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
-    animation: ${props => (props.isGameFinish ? boxLidAnim : '')} 1s forwards ease-in-out;
+    animation: ${props => (props.isGameFinish ? boxLidAnim : '')} 1s 0.5s forwards ease-in-out;
     &::after {
         content: "";
         position: absolute;
@@ -165,5 +174,4 @@ const BoxNumber = styled.div`
     text-align: center;
     font-size: 50px;
     font-weight: bold;
-    transform: ${props => (props.isGameFinish ? 'translateY(-57%)' : 'translateY(0%)')};
 `;
