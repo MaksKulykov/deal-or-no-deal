@@ -97,7 +97,7 @@ const boxValAnim = keyframes`
         opacity: 0;
     }
     100% {
-        transform: translateY(-155%);
+        transform: translateY(-125%);
         opacity: 1;
         z-index: 0;
     }
@@ -138,6 +138,8 @@ const BoxValue = styled.div`
     opacity: 0;
     background: linear-gradient(#ffd700,#b8860b);
     text-align: center;
+    height: 40px;
+    line-height: 40px;
     font-weight: bold;
 `;
 
@@ -169,6 +171,8 @@ const BoxLid = styled.div`
 
 const BoxNumber = styled.div`
     position: absolute;
+    display: block;
+    bottom 20px;
     z-index: 2;
     width: 100%;
     text-align: center;
