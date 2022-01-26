@@ -5,24 +5,35 @@ import { unit, widths } from '../../globalStyles';
 
 import './bankOfferModal.css';
 
-const BankOfferModal = ({ calcBankSum, isOpen, handleEndGame, handleCloseModal }) => {
+const BankOfferModal = ({ isGameFinish, calcBankSum, isOpen, handleEndGame, handleCloseModal }) => {
+
     return (
         <Modal
             isOpen={isOpen}
             style={modalStyles}
-            closeTimeoutMS={500}
+            closeTimeoutMS={300}
         >
-            <ModalHeader>BANK'S OFFER</ModalHeader>
+            <ModalHeader>
+                {isGameFinish ? 'CONGRATULATIONS!' : 'BANK\'S OFFER'}
+            </ModalHeader>
             <ModalBody>
-                {String.fromCharCode(8364) + ' ' + calcBankSum
-                    .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                {isGameFinish ? 'YOU WON' : calcBankSum}
             </ModalBody>
-            <ModalFooter>
-                <ModalButton onClick={handleEndGame}>DEAL</ModalButton>
-                <ModalButton onClick={handleCloseModal}>NO DEAL</ModalButton>
+            <ModalFooter isGameFinish={isGameFinish}>
+                {
+                    isGameFinish ?
+                        <ModalFooterContent>
+                            {calcBankSum}
+                        </ModalFooterContent> :
+                        <>
+                            <ModalButton onClick={handleEndGame}>DEAL</ModalButton>
+                            <ModalButton onClick={handleCloseModal}>NO DEAL</ModalButton>
+                        </>
+                }
             </ModalFooter>
         </Modal>
     );
+
 };
 
 export default BankOfferModal;
@@ -70,7 +81,12 @@ const ModalFooter = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: no-wrap;
-    justify-content: space-between;
+    justify-content: ${props => props.isGameFinish ? 'center' : 'space-between'};
+`;
+
+const ModalFooterContent = styled.div`
+    font-weight: bold;
+    font-size: 70px;
 `;
 
 const ModalButton = styled.button`

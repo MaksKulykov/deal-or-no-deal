@@ -76,7 +76,12 @@ export class Game extends Component {
                 sum = sum + parseInt(value);
             }
         });
-        return Math.round(sum / (NUMBERS.length - this.state.selectedValues.length) / COEFFICIENTS[this.state.counter]);
+        let value = Math.round(sum / (NUMBERS.length - this.state.selectedValues.length) / COEFFICIENTS[this.state.counter]);
+        return this.state.isGameFinish && this.state.selectedValues.length === 22 ?
+            String.fromCharCode(8364) + ' ' + this.state.firstBoxValue
+                .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") :
+            String.fromCharCode(8364) + ' ' + value
+                .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     };
 
     calcBoxCounter = (arr) => {
@@ -135,17 +140,18 @@ export class Game extends Component {
         this.setState({showModal: false});
         this.setState({counter: this.state.counter + 1});
         if (this.state.selectedValues.length === 22) {
-            this.setGameFinishFlag();
+            this.openEndGameModal();
         }
     };
 
     handleEndGame = () => {
         this.setState({showModal: false});
-        this.setGameFinishFlag();
+        this.openEndGameModal();
     };
 
-    setGameFinishFlag = () => {
+    openEndGameModal = () => {
         this.setState({isGameFinish: true});
+        setTimeout(() => this.setState({showModal: true}), 2000);
     };
 
     render() {
@@ -165,6 +171,7 @@ export class Game extends Component {
                     {this.renderRightMoneyList()}
                 </SideBar>
                 <BankOfferModal isOpen={this.state.showModal}
+                                isGameFinish={this.state.isGameFinish}
                                 calcBankSum={this.calcBankSum()}
                                 handleCloseModal={this.handleCloseModal}
                                 handleEndGame={this.handleEndGame} />
