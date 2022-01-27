@@ -77,7 +77,7 @@ export class Game extends Component {
             }
         });
         let value = Math.round(sum / (NUMBERS.length - this.state.selectedValues.length) / COEFFICIENTS[this.state.counter]);
-        return this.state.isGameFinish && this.state.selectedValues.length === 22 ?
+        return this.state.isGameFinish && this.state.selectedValues.length === 22 && this.state.counter === 7 ?
             String.fromCharCode(8364) + ' ' + this.state.firstBoxValue
                 .toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") :
             String.fromCharCode(8364) + ' ' + value
