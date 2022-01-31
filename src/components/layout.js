@@ -28,7 +28,8 @@ const PageContainer = styled.div`
     flex-grow: 1;
     max-width: ${props => props.fullWidth ? null : widths.regularPageWidth}px;
     width: 100%;
+    min-width: 992px;
     height: 100vh;
     padding: ${props => props.fullWidth ? 0 : unit * 2}px;
-    padding-bottom: ${unit * 5}px; 
+    padding-bottom: ${unit * 5}px;
 `;

@@ -23,6 +23,7 @@ const PageContainer = styled.div`
     align-items: center;
     flex-grow: 1;
     width: auto;
+    min-width: 200px;
     height: 100vh;
     padding: ${unit * 2}px;
     padding-bottom: ${unit * 5}px;

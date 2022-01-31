@@ -19,6 +19,7 @@ export default MoneyBox;
 const MoneyBoxContainer = styled.div`
     border-radius: 6px;
     width: 80%;
+    min-width: 150px;
     height: auto;
     padding: 5px;
     margin: ${unit}px;

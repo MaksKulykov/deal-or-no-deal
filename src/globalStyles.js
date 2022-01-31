@@ -29,6 +29,7 @@ const GlobalStyles = createGlobalStyle`
         display: flex;
         justify-content: center;
         flex-direction: row;
+        flex-wrap: no-wrap;
         align-self: center;
         background-image: url(${img});
     }
