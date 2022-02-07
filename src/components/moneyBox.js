@@ -2,6 +2,9 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { unit } from '../globalStyles';
 
+/**
+ * MoneyBox renders the images of the amount of money in the boxes
+ */
 const MoneyBox = ({animate, reverse, value}) => {
 
     return (

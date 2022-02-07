@@ -10,6 +10,9 @@ import { COEFFICIENTS, NUMBERS, STEPS_AMOUNT } from '../constants/constants';
 
 Modal.setAppElement(document.getElementById('root'));
 
+/**
+ * Game Page is the Deal-or-no-deal's home page.
+ */
 export class Game extends Component {
 
     state = {

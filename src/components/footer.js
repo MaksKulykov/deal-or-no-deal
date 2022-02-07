@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * Footer renders the bottom part
+ * with the first (main) box and the click counter
+ */
 const Footer = ({children, boxCounter, disabled}) => {
     return (
         <>
@@ -16,6 +20,7 @@ const Footer = ({children, boxCounter, disabled}) => {
 
 export default Footer;
 
+/** Footer styled components */
 const FooterContainer = styled.div`
     display: flex;
     align-self: center;

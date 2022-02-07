@@ -66,6 +66,7 @@ const modalStyles = {
     },
 };
 
+/** BankOfferModal styled components */
 const ModalHeader = styled.div`
     text-align: center;
     font-size: 50px;

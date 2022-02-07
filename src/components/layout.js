@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import { unit, widths } from '../globalStyles';
 
 /**
- * Layout renders the full page content:
- * with header, Page container and footer
+ * Layout renders container for all boxes
  */
 const Layout = ({ fullWidth, children, grid }) => {
     return (

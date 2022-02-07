@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
+/**
+ * Box renders images of boxes
+ */
 const Box = ({boxNumber, disabled, isGameFinish, value, onClick}) => {
     const [visible, setVisible] = useState(true);
     const [animate, setAnimate] = useState(false);

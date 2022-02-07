@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { unit } from '../globalStyles';
 
+/**
+ * SideBar renders lists of all MoneyBoxes on the left and right pats of screen
+ */
 const SideBar = ({ children }) => {
     return (
         <>
