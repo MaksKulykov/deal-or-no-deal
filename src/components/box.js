@@ -116,7 +116,7 @@ const BoxBody = styled.div`
     background-color: #cc231e;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
-    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     background: linear-gradient(#762c2c,#ff0303);
     cursor: ${props => props.disabled ? 'default' : 'pointer'};
     animation: ${props => (props.isGameFinish ? boxBodyAnim : '')} 1s 0.5s forwards ease-in-out;
@@ -127,8 +127,7 @@ const BoxBody = styled.div`
         top: 0;
         bottom: 0;
         left: 50%;
-        -webkit-transform: translateX(-50%);
-                transform: translateX(-50%);
+        transform: translateX(-50%);
         width: 60px;
         background: linear-gradient(#ffffff,#ffefa0)
     }
@@ -150,8 +149,7 @@ const BoxLid = styled.div`
     position: absolute;
     z-index: 1;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
+    transform: translateX(-50%);
     bottom: 90%;
     background-color: #cc231e;
     height: 20px;
@@ -165,8 +163,7 @@ const BoxLid = styled.div`
         top: 0;
         bottom: 0;
         left: 50%;
-        -webkit-transform: translateX(-50%);
-                transform: translateX(-50%);
+        transform: translateX(-50%);
         width: 60px;
         background: linear-gradient(#ffefa0,#fff)
     }
@@ -175,7 +172,7 @@ const BoxLid = styled.div`
 const BoxNumber = styled.div`
     position: absolute;
     display: block;
-    bottom 20px;
+    bottom: 20px;
     z-index: 2;
     width: 100%;
     text-align: center;

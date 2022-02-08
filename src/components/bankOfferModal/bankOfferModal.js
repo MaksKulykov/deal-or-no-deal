@@ -81,7 +81,7 @@ const ModalBody = styled.div`
 const ModalFooter = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: no-wrap;
+    flex-wrap: nowrap;
     justify-content: ${props => props.isGameFinish ? 'center' : 'space-between'};
 `;
 
