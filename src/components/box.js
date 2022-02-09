@@ -24,7 +24,7 @@ const Box = ({boxNumber, disabled, isGameFinish, value, onClick}) => {
                             .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
                     </BoxValue>
                     <BoxLid isGameFinish={isGameFinish} />
-                    <BoxNumber isGameFinish={isGameFinish}>
+                    <BoxNumber>
                         {boxNumber}
                     </BoxNumber>
                 </BoxBody>
@@ -113,13 +113,12 @@ const BoxBody = styled.div`
     margin-top: 53.3333333333px;
     margin-left: auto; 
     margin-right: auto;
-    background-color: #cc231e;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
     background: linear-gradient(#762c2c,#ff0303);
     cursor: ${props => props.disabled ? 'default' : 'pointer'};
-    animation: ${props => (props.isGameFinish ? boxBodyAnim : '')} 1s 0.5s forwards ease-in-out;
+    animation: ${props => props.isGameFinish ? boxBodyAnim : ''} 1s 0.5s forwards ease-in-out;
     z-index: 1;
     &::after {
         content: "";
@@ -156,7 +155,7 @@ const BoxLid = styled.div`
     width: 110px;
     border-radius: 5%;
     box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
-    animation: ${props => (props.isGameFinish ? boxLidAnim : '')} 1s 0.5s forwards ease-in-out;
+    animation: ${props => props.isGameFinish ? boxLidAnim : ''} 1s 0.5s forwards ease-in-out;
     &::after {
         content: "";
         position: absolute;
